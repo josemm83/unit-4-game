@@ -1,3 +1,20 @@
+*{
+    box-sizing: border-box;
+}
+
 body {
+    background: url("../images/star-wars.jpg");
+}
+
+h1 h2 h3{
     font-family: 'Karma', serif;
+}
+
+h1 {
+    text-align: right; 
+}
+
+img{
+    width: 150px;
+    height: 150px;
 }
