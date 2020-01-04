@@ -1,41 +1,52 @@
 <!DOCTYPE html>
-<html lang=en-us>
+<html lang="en-us">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale = 1.0"/>
         <title>Unit-4-Game</title>
+        <link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/css/reset.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     </head>
 
     <body>
-        <script src="./assets/javascript/game.js"></script>  
+        <script src ="./assets/javascript/game.js"></script>
         <h1>Star Wars RPG!</h1>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <img class ="border border-success" src="./assets/images/obi-wan.jfif">
-                </div>
-                <div class="col-md-4">
-                    <img class ="border border-success" src="./assets/images/luke-skywalker.jpg">
-                </div>
-                <div class="col-md-4">
-                    <img class ="border border-success" src="./assets/images/darth-sidious.jfif">
-                </div>
-                <div class="col-md-4">
-                    <img class ="border border-success" src="./assets/images/grievous.jpg">
-                </div>
+        <div class="clearfix">
+            <div class="container" id="obiwan">
+                <p>Obi-Wan Kenobi</p>
+                <img src="./assets/images/obi-wan.jfif">
+                <p>120</p>
+            </div>
+
+            <div class="container" id="luke">
+                <p>Luke Skywalker</p>
+                <img src="./assets/images/luke-skywalker.jpg">
+                <p>100</p>
+            </div>
+        
+            <div class="container" id="sidious">
+                <p>Darth Sidious</p>
+                <img src="./assets/images/darth-sidious.jfif">
+                <p>150</p>
+            </div>
+            
+            <div class="container" id="grievous">
+                <p>General Grievous</p>
+                <img src="./assets/images/grievous.jpg">
+                <p>100</p>
             </div>
         </div>
+
         <h3>Your Character</h3>    
-        <div></div>  
+        <div id="selection"></div>  
         <h3>Enemies Available To Attack</h3>
+        <div class="defenseSlot" id="defense"></div>
         <h3>Fight Section</h3>
-        <button>Attack</button>
+        <div id="attack" class="button">Attack</div>
         <h3>Defender</h3>
+        <div id="defender"></div>
     </body>
 
 </html>
