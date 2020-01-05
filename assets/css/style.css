@@ -1,6 +1,5 @@
 *{
     box-sizing: border-box;
-    font-family: 'Fjalla One', sans-serif;
 }
 
 body {
@@ -10,26 +9,36 @@ body {
 }
 
 h1 {
-    text-align: right; 
+    text-align: right;  
+    font-size: 28px; 
 }
 
-img{
+h1, h2, h3 {
+    color: orangered;
+    font-weight: bolder;
+}
+
+h1, h2, h3, p {
+    font-family: 'Fjalla One', sans-serif;
+}
+
+img {
     float: left;
     width: 150px;
     height: 150px;
 }
 
-.defenseSlot{
+/* .defenseSlot{
     
-}
+} */
 
-.container{
+.container {
     position: relative;
     display: inline-block;
-    background-color: white;
+    background-color: #ffffff;
     padding: 15px;
     text-align: center;
-    border: 3px solid green;
+    border: 5px solid #4CAF50;
 }
 
 .button {
@@ -44,7 +53,11 @@ img{
     cursor: pointer;
   }
 
-.clearfix::after{
+.button:active, .container:active {
+    transform: translateY(4px);
+}
+
+.clearfix::after {
     content: " ";
     display: block;
     clear: both;
