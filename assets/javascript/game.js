@@ -1,101 +1,75 @@
 //hp = health points, ap = attack power, cap = counter attack power
-var obiwan = {
-    hp: 120,
-    ap: 6,
-    cap: 8
-};
-
-var luke = {
-    hp: 100,
-    ap: 5,
-    cap: 6
-};
-
-var sidious = {
-    hp: 150,
-    ap: 8,
-    cap: 7
-};
-
-var grievous = {
-    hp: 100,
-    ap: 7,
-    cap: 5
-};
-
+var characters = [];
 var defenseSelect = false;
 var offenseSelect = false;
 var attacker;
-var defenders=[];
+var defender;
+var attackPower;
 
-function attack(warrior){
-    $("#attack").click(function(){
-        // console.log(warrior);
-        warrior.ap += 6;
-        // console.log("attacker's new attack power: " + warrior.ap);
-    });
+function charCreate(name, hp, ap, cap) {
+    this.name = name;
+    this.hp = hp;
+    this.ap  = ap;
+    this.cap = cap;
 }
 
-function defenderChoice(){
-    if(offenseSelect){
-        $("#luke").on("click", function(){
-            $("#luke").appendTo("#defender");    
-        });
-        defender = true;
+function alive(user){
+    if(user.hp > 0){
+        return true;
     }
+    return false;
+}
 
-    else if(defender) {
-
+function winner(){
+    if (characters.length == 0 && attacker.hp > 0){
+        return true;
     }
+    return false;
+}
 
-    else {
-        alert("Please select a defender");
+function attack(user){
+    attackPower = user.ap;
+}
+
+function updateRoster(roster){
+    // console.log("updating roster");
+    for (var j = 0; j < roster.length; j ++){
+        $("#" + roster[j].name).appendTo("#defense");
     }
 }
 
-function gameStart(offense){
-    defenderChoice();
-    attack(offense);
-}
+$(document).on("click", "div", function() {
+    // console.log("what is this: " + (this).id);
+    if(offenseSelect && !defenseSelect && (this.id != attacker.name)){
+        for (var k = 0; k < characters.length; k ++){
+            if (characters[k].name === (this).id){
+                defender = characters[k];
+                characters.splice(k, 1);
+                defenseSelect = true;
+                $("#" + defender.name).appendTo("#defender");
+            }
+        }
+    }
+
+    if(!offenseSelect){
+        for (var i = 0; i < characters.length; i ++){
+            if(characters[i].name === (this).id){
+                attacker = characters[i];
+                attack(attacker);
+                characters.splice(i, 1);
+                offenseSelect = true;
+                $("#" + attacker.name).appendTo("#selection");
+            }
+        }
+        updateRoster(characters);
+    }
+});
 
 $(document).ready(function(){
-    $("#obiwan").on("click", function(){
-        alert("Hello There!");
-        $("#obiwan").appendTo("#selection");
-        $("#luke").appendTo("#defense");
-        $("#sidious").appendTo("#defense");
-        $("#grievous").appendTo("#defense");
-        offenseSelect = true;
-        gameStart(obiwan);
-    });
-
-    $("#luke").on("click", function (){
-        alert("I am a Jedi like my father");
-        $("#obiwan").appendTo("#defense");
-        $("#luke").appendTo("#selection");
-        $("#sidious").appendTo("#defense");
-        $("#grievous").appendTo("#defense");
-        offenseSelect = true;
-        attacker = luke;
-    });
-
-    $("#sidious").on("click", function(){
-        alert("I am the Senate!");
-        $("#obiwan").appendTo("#defense");
-        $("#luke").appendTo("#defense");
-        $("#sidious").appendTo("#selection");
-        $("#grievous").appendTo("#defense");
-        offenseSelect = true;
-        attacker = sidious;
-    });
-
-    $("#grievous").on("click", function(){
-        alert("Prepare for attack!");
-        $("#obiwan").appendTo("#defense");
-        $("#luke").appendTo("#defense");
-        $("#sidious").appendTo("#defense");
-        $("#grievous").appendTo("#selection");
-        offenseSelect = true;
-        attacker = grievous;
-    });
+    var obiwan = new charCreate("obiwan", 120, 6, 8);
+    var luke = new charCreate("luke", 100, 5, 6);
+    var sidious = new charCreate("sidious", 150, 8, 7);
+    var grievous = new charCreate("grievous", 100, 7, 5);
+    characters.push(obiwan, luke, sidious, grievous);
+    // console.log(characters);
 });
